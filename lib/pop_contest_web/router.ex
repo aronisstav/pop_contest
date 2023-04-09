@@ -20,7 +20,9 @@ defmodule PopContestWeb.Router do
   scope "/", PopContestWeb do
     pipe_through :browser
 
-    live "/", SongLive.Index, :index
+    live "/", SongLive.Results, :vote
+    live "/results", SongLive.Results, :index
+    live "/vote", SongLive.Vote, :vote
   end
 
   # Other scopes may use custom stacks.

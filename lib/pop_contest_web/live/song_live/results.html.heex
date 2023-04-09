@@ -1,0 +1,11 @@
+<.header>
+  Leaderboard
+</.header>
+
+<.table
+  id="songs"
+  rows={@songs}
+>
+  <:col :let={song}><%= song.title %></:col>
+  <:col :let={song}><%= song.tally %></:col>
+</.table>

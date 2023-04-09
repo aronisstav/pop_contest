@@ -4,6 +4,8 @@ defmodule PopContestWeb.SongLive.Index do
   alias PopContest.Songs
   alias PopContest.Songs.Song
 
+  @topic "live"
+
   @impl true
   def mount(_params, _session, socket) do
     {:ok, stream(socket, :songs, Songs.list_songs())}
@@ -34,14 +36,18 @@ defmodule PopContestWeb.SongLive.Index do
 
   @impl true
   def handle_info({PopContestWeb.SongLive.FormComponent, {:saved, song}}, socket) do
+    PopContestWeb.Endpoint.broadcast_from(self(), @topic, "vote", :foo)
     {:noreply, stream_insert(socket, :songs, song)}
+  end
+  def handle_info(_, socket) do
+    {:noreply, socket}
   end
 
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
     song = Songs.get_song!(id)
     {:ok, _} = Songs.delete_song(song)
-
+    PopContestWeb.Endpoint.broadcast_from(self(), @topic, "vote", :foo)
     {:noreply, stream_delete(socket, :songs, song)}
   end
 end

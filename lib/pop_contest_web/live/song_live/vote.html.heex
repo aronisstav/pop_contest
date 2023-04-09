@@ -1,0 +1,18 @@
+<.table
+  id="songs"
+  rows={@songs}
+>
+  <:col :let={song}>
+    <.link phx-click={JS.push("vote", value: %{id: song.id})}>
+      <.button><%= song.title %></.button>
+    </.link>
+  </:col>
+</.table>
+
+<.header>
+  <:actions>
+    <.link patch={~p"/vote/new"}>
+      <.button>Refresh (TODO)</.button>
+    </.link>
+  </:actions>
+</.header>
