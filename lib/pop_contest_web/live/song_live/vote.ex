@@ -1,15 +1,21 @@
 defmodule PopContestWeb.SongLive.Vote do
   use PopContestWeb, :live_view
 
-  alias PopContest.Songs
-
   @topic "live"
+  @presence_topic "pop_contest_presence"
+
+  alias PopContest.Songs
+  alias PopContest.Presence
+  alias PopContest.PubSub
 
   @impl true
   def mount(_params, _session, socket) do
     case connected?(socket) do
-      true -> {:ok, assign(socket, :songs, Songs.sample_songs())}
-      false -> {:ok, assign(socket, :songs, [])}
+      true ->
+        {:ok, _} = Presence.track(self(), @presence_topic, socket.id, %{})
+        Phoenix.PubSub.subscribe(PubSub, @presence_topic)
+        {:ok, update(socket, Songs.sample_songs())}
+      false -> {:ok, update(socket, [])}
     end
   end
 
@@ -21,6 +27,17 @@ defmodule PopContestWeb.SongLive.Vote do
     {:noreply, socket}
   end
   def handle_event("refresh", _, socket) do
-    {:noreply, assign(socket, :songs, Songs.sample_songs())}
+    {:noreply, update(socket, Songs.sample_songs())}
   end
+
+  def update(socket, songs) do
+    socket
+    |> assign(:songs, songs)
+    |> assign(:presence, get_presence())
+  end
+
+  def get_presence() do
+    Enum.count(Presence.list(@presence_topic))
+  end
+
 end

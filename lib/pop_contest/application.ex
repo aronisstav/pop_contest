@@ -14,6 +14,8 @@ defmodule PopContest.Application do
       PopContest.Repo,
       # Start the PubSub system
       {Phoenix.PubSub, name: PopContest.PubSub},
+      # Presence
+      PopContest.Presence,
       # Start Finch
       {Finch, name: PopContest.Finch},
       # Start the Endpoint (http/https)

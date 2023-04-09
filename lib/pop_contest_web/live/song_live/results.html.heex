@@ -1,25 +1,35 @@
-<table class="border-separate border-spacing-5 w-full">
-  <thead class="font-bold text-4xl">
-    <tr>
-      <th> Song Leaderboard </th>
-      <th>
-        <.link href={~p"/vote"} >
-          <.button class="bg-blue-500">Go to vote!</.button>
-        </.link>
-      </th>
-    </tr>
-  </thead>
-  <tbody class="font-semibold text-3xl">
-  <%= for song <- @songs do %>
-    <tr>
-      <td><%= song.title %></td>
-      <td class="text-center"><%= song.tally %></td>
-    </tr>
-  <% end %>
-    <tr>
-      <td class="text-4xl font-bold">Total Votes</td>
-      <td class="text-center"><%= @total %></td>
-    </tr>
-  </tbody>
-</table>
-<img class="w-full" src="https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Freflecting-bighearted-yardant.gigalixirapp.com&chs=180x180&choe=UTF-8&chld=L|2" alt="qr code">
+<div class="flex flex-col items-center gap-5">
+  <div class="flex flex-row items-center gap-5 w-full">
+    <div class="grow">
+      <.link href={~p"/vote"} >
+        <.button class="bg-blue-500">Vote!</.button>
+      </.link>
+    </div>
+    <div class="grow text-center">
+      <%= @presence %> visitors online
+    </div>
+    <div>
+      <.link href={"https://www.instagram.com/glasblasarna"} >
+        <.button class="bg-blue-500">Follow us on instagram!</.button>
+      </.link>
+    </div>
+  </div>
+  <h1 class="text-center font-bold text-4xl w-full">
+    Song Leaderboard
+  </h1>
+  <table class="border-separate border-spacing-5 w-full">
+    <tbody class="font-semibold text-3xl">
+    <%= for song <- @songs do %>
+      <tr>
+        <td><%= song.title %></td>
+        <td class="text-center"><%= song.tally %></td>
+      </tr>
+    <% end %>
+      <tr>
+        <td class="text-4xl font-bold w-4/5">Total Votes</td>
+        <td class="text-center w-1/5"><%= @total %></td>
+      </tr>
+    </tbody>
+  </table>
+  <img class="w-full" src="https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Freflecting-bighearted-yardant.gigalixirapp.com&chs=180x180&choe=UTF-8&chld=L|2" alt="qr code">
+</div>

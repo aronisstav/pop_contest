@@ -1,4 +1,20 @@
 <div class="grid grid-cols-1 gap-7">
+  <div class="flex flex-row items-center gap-5 w-full">
+    <div class="grow">
+      <.link href={~p"/results"} >
+        <.button class="bg-blue-500">See results!</.button>
+      </.link>
+    </div>
+    <div class="grow text-center">
+      <%= @presence %> visitors online
+    </div>
+    <div>
+      <.link href={"https://www.instagram.com/glasblasarna"} >
+        <.button class="bg-blue-500">Follow us on instagram!</.button>
+      </.link>
+    </div>
+  </div>
+
   <div class="grid grid-cols-1 gap-2">
     <%= for song <- @songs do %>
     <div>
@@ -9,20 +25,8 @@
     <% end %>
   </div>
   <div class="grid grid-cols-1 gap-2">
-    <div>
-      <.link phx-click={JS.push("refresh", value: %{})}>
-        <.button class="bg-amber-700 w-full">Change songs!</.button>
-      </.link>
-    </div>
-    <div>
-      <.link href={~p"/results"} >
-        <.button class="bg-blue-500 w-full">Go to results!</.button>
-      </.link>
-    </div>
-  </div>
-  <div>
-    <.link href={"https://www.instagram.com/glasblasarna"} >
-      <.button class="bg-blue-500 w-full">Follow us on instagram!</.button>
+    <.link phx-click={JS.push("refresh", value: %{})}>
+      <.button class="bg-amber-700 w-full">Draw new songs</.button>
     </.link>
   </div>
 </div>
