@@ -19,14 +19,14 @@
     <%= for song <- @songs do %>
     <div>
       <.link phx-click={JS.push("vote", value: %{id: song.id})}>
-        <.button class="bg-emerald-500 w-full"><%= song.title %></.button>
+        <.button class="bg-green-500 w-full"><%= song.title %></.button>
       </.link>
     </div>
     <% end %>
   </div>
   <div class="grid grid-cols-1 gap-2">
     <.link phx-click={JS.push("refresh", value: %{})}>
-      <.button class="bg-amber-700 w-full">Draw new songs</.button>
+      <.button class="bg-red-600 w-full">Draw new songs</.button>
     </.link>
   </div>
 </div>
