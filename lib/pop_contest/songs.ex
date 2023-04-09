@@ -18,7 +18,15 @@ defmodule PopContest.Songs do
 
   """
   def list_songs do
-    Repo.all(Song)
+    from(
+      s in Song,
+      order_by: [desc: :tally]
+    )
+    |> Repo.all()
+  end
+
+  def sample_songs do
+    Enum.take(Enum.shuffle(Repo.all(Song)),3)
   end
 
   @doc """
