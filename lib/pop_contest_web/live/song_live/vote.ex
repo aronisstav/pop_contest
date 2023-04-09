@@ -17,4 +17,7 @@ defmodule PopContestWeb.SongLive.Vote do
     PopContestWeb.Endpoint.broadcast_from(self(), @topic, "vote", :foo)
     {:noreply, socket}
   end
+  def handle_event("refresh", _, socket) do
+    {:noreply, assign(socket, :songs, Songs.sample_songs())}
+  end
 end

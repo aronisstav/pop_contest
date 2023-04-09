@@ -11,8 +11,8 @@
 
 <.header>
   <:actions>
-    <.link patch={~p"/vote/new"}>
-      <.button>Refresh (TODO)</.button>
+    <.link phx-click={JS.push("refresh", value: %{})}>
+      <.button>Refresh</.button>
     </.link>
   </:actions>
 </.header>
