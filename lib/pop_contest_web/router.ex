@@ -70,6 +70,7 @@ defmodule PopContestWeb.Router do
       on_mount: [{PopContestWeb.UserAuth, :ensure_authenticated}] do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
+
       live "/songs", SongLive.Index, :index
       live "/songs/new", SongLive.Index, :new
       live "/songs/:id/edit", SongLive.Index, :edit
