@@ -462,7 +462,7 @@ defmodule PopContestWeb.CoreComponents do
             >
               <div class="block py-4 pr-6">
                 <span class="absolute -inset-y-px right-0 -left-4 group-hover:bg-zinc-50 sm:rounded-l-xl" />
-                <span class={["relative", i == 0 && "font-semibold text-zinc-900"]}>
+                <span class={["relative", i == 0 && "font-semibold text-slate-100 hover:text-slate-900"]}>
                   <%= render_slot(col, @row_item.(row)) %>
                 </span>
               </div>
@@ -472,7 +472,7 @@ defmodule PopContestWeb.CoreComponents do
                 <span class="absolute -inset-y-px -right-4 left-0 group-hover:bg-zinc-50 sm:rounded-r-xl" />
                 <span
                   :for={action <- @action}
-                  class="relative ml-4 font-semibold leading-6 text-zinc-900 hover:text-zinc-700"
+                  class="relative ml-4 font-semibold leading-6 text-slate-100 hover:text-slate-900"
                 >
                   <%= render_slot(action, @row_item.(row)) %>
                 </span>
