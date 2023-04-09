@@ -30,6 +30,7 @@ defmodule PopContestWeb.SongLive.Results do
     |> assign(:songs, songs)
     |> assign(:total, total)
     |> assign(:presence, get_presence())
+    |> assign(:page_title, "Leaderboard")
   end
 
   def get_presence() do

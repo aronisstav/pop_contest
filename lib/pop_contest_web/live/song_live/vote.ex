@@ -34,6 +34,7 @@ defmodule PopContestWeb.SongLive.Vote do
     socket
     |> assign(:songs, songs)
     |> assign(:presence, get_presence())
+    |> assign(:page_title, "Voting")
   end
 
   def get_presence() do
