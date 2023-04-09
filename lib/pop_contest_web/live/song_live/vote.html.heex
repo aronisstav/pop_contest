@@ -1,22 +1,24 @@
-<div class="grid grid-cols-1 gap-2">
-<%= for song <- @songs do %>
-  <div>
-    <.link phx-click={JS.push("vote", value: %{id: song.id})}>
-      <.button class="bg-emerald-500 w-full"><%= song.title %></.button>
-    </.link>
+<div class="grid grid-cols-1 gap-7">
+  <div class="grid grid-cols-1 gap-2">
+    <%= for song <- @songs do %>
+    <div>
+      <.link phx-click={JS.push("vote", value: %{id: song.id})}>
+        <.button class="bg-emerald-500 w-full"><%= song.title %></.button>
+      </.link>
+    </div>
+    <% end %>
   </div>
-<% end %>
-  <div class="gap-20"></div>
-  <div>
-    <.link phx-click={JS.push("refresh", value: %{})}>
-      <.button class="bg-amber-700 w-full">Change songs!</.button>
-    </.link>
-  </div>
-  <div class="gap-20"></div>
-  <div>
-    <.link href={~p"/results"} >
-      <.button class="bg-blue-500 w-full">Go to results!</.button>
-    </.link>
+  <div class="grid grid-cols-1 gap-2">
+    <div>
+      <.link phx-click={JS.push("refresh", value: %{})}>
+        <.button class="bg-amber-700 w-full">Change songs!</.button>
+      </.link>
+    </div>
+    <div>
+      <.link href={~p"/results"} >
+        <.button class="bg-blue-500 w-full">Go to results!</.button>
+      </.link>
+    </div>
   </div>
   <div>
     <.link href={"https://www.instagram.com/glasblasarna"} >

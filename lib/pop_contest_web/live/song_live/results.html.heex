@@ -1,16 +1,21 @@
-<.header>
-  GASP! Leaderboard
-  <:actions>
-    <.link href={~p"/vote"} >
-      <.button class="bg-blue-500 w-full">Go to vote!</.button>
-    </.link>
-  </:actions>
-</.header>
-
-<.table
-  id="songs"
-  rows={@songs}
->
-  <:col :let={song}><%= song.title %></:col>
-  <:col :let={song}><%= song.tally %></:col>
-</.table>
+<table class="border-separate border-spacing-5 w-full">
+  <thead class="place-items-center font-bold text-4xl">
+    <tr>
+      <th> GASP! Song Leaderboard </th>
+      <th>
+        <.link href={~p"/vote"} >
+          <.button class="bg-blue-500">Go to vote!</.button>
+        </.link>
+      </th>
+    </tr>
+  </thead>
+  <tbody class="font-semibold text-3xl">
+  <%= for song <- @songs do %>
+    <tr>
+      <td><%= song.title %></td>
+      <td class="text-center"><%= song.tally %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<img class="w-full" src="https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Freflecting-bighearted-yardant.gigalixirapp.com&chs=180x180&choe=UTF-8&chld=L|2" alt="qr code">
