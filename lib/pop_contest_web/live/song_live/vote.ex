@@ -2,7 +2,6 @@ defmodule PopContestWeb.SongLive.Vote do
   use PopContestWeb, :live_view
 
   alias PopContest.Songs
-  alias PopContest.Songs.Song
 
   @topic "live"
 
