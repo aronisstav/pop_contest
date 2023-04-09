@@ -7,7 +7,10 @@ defmodule PopContestWeb.SongLive.Vote do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, :songs, Songs.sample_songs())}
+    case connected?(socket) do
+      true -> {:ok, assign(socket, :songs, Songs.sample_songs())}
+      false -> {:ok, assign(socket, :songs, [])}
+    end
   end
 
   @impl true
