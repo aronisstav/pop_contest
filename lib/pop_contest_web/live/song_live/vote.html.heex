@@ -1,18 +1,26 @@
-<.table
-  id="songs"
-  rows={@songs}
->
-  <:col :let={song}>
+<div class="grid grid-cols-1 gap-2">
+<%= for song <- @songs do %>
+  <div>
     <.link phx-click={JS.push("vote", value: %{id: song.id})}>
-      <.button><%= song.title %></.button>
+      <.button class="bg-emerald-500 w-full"><%= song.title %></.button>
     </.link>
-  </:col>
-</.table>
-
-<.header>
-  <:actions>
+  </div>
+<% end %>
+  <div class="gap-20"></div>
+  <div>
     <.link phx-click={JS.push("refresh", value: %{})}>
-      <.button>Refresh</.button>
+      <.button class="bg-amber-700 w-full">Change songs!</.button>
     </.link>
-  </:actions>
-</.header>
+  </div>
+  <div class="gap-20"></div>
+  <div>
+    <.link href={~p"/results"} >
+      <.button class="bg-blue-500 w-full">Go to results!</.button>
+    </.link>
+  </div>
+  <div>
+    <.link href={"https://www.instagram.com/glasblasarna"} >
+      <.button class="bg-blue-500 w-full">Follow us on instagram!</.button>
+    </.link>
+  </div>
+</div>
