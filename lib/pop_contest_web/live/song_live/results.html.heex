@@ -17,22 +17,24 @@
   <div>
     <img class="mx-auto w-3/4" src={~p"/images/logo.jpg"} alt="logo">
   </div>
-  <h1 class="text-center font-bold text-4xl w-full">
+  <h1 class="text-yellow-200 text-center font-bold text-4xl w-full">
     Leaderboard
   </h1>
-  <table class="border-separate border-spacing-5 w-full">
-    <tbody class="font-semibold text-3xl">
+  <table class="border-separate border-spacing-5 w-full text-2xl font-semibold">
+    <tbody>
     <%= for song <- @songs do %>
       <tr>
         <td><%= song.title %></td>
-        <td class="text-center"><%= song.tally %></td>
+        <td class="text-right"><%= song.tally %></td>
       </tr>
     <% end %>
-      <tr>
-        <td class="text-4xl font-bold w-4/5">Total Votes</td>
-        <td class="text-center w-1/5"><%= @total %></td>
-      </tr>
     </tbody>
+    <tfoot class="text-yellow-200 text-4xl font-bold">
+      <tr>
+        <td class="w-5/6">Total Votes</td>
+        <td class="text-right w-1/6"><%= @total %></td>
+      </tr>
+    </tfoot>
   </table>
-  <img class="w-full" src="https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Freflecting-bighearted-yardant.gigalixirapp.com&chs=180x180&choe=UTF-8&chld=L|2" alt="qr code">
+  <img class="mx-auto w-auto" src="https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Freflecting-bighearted-yardant.gigalixirapp.com&chs=180x180&choe=UTF-8&chld=L|2" alt="qr code">
 </div>
