@@ -5,6 +5,7 @@ defmodule PopContestWeb.SongLive.Vote do
   @presence_topic "pop_contest_presence"
 
   alias PopContest.Songs
+  alias PopContest.Songs.Song
   alias PopContest.Presence
   alias PopContest.PubSub
 
@@ -15,7 +16,7 @@ defmodule PopContestWeb.SongLive.Vote do
         {:ok, _} = Presence.track(self(), @presence_topic, socket.id, %{})
         Phoenix.PubSub.subscribe(PubSub, @presence_topic)
         {:ok, update(socket, Songs.sample_songs())}
-      false -> {:ok, update(socket, [])}
+      false -> {:ok, update(socket, [%Song{:title => "Loading..."}])}
     end
   end
 
