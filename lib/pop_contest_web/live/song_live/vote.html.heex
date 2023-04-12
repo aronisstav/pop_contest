@@ -21,7 +21,7 @@
     <%= for song <- @songs do %>
     <div>
       <.link phx-click={JS.push("vote", value: %{id: song.id})}>
-        <.button class="border-2 shadow shadow-md shadow-amber-200 border-amber-300 text-yellow-200 w-full"><%= song.title %></.button>
+        <.button class="border-2 shadow shadow-md shadow-amber-200 border-amber-300 text-yellow-200 w-full"><%= song.title %> - <%= song.artist %></.button>
       </.link>
     </div>
     <% end %>

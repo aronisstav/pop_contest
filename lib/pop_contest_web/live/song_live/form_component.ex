@@ -20,6 +20,7 @@ defmodule PopContestWeb.SongLive.FormComponent do
         phx-submit="save"
       >
         <.input field={@form[:title]} type="text" label="Title" />
+        <.input field={@form[:artist]} type="text" label="Artist" />
         <.input field={@form[:tally]} type="number" label="Tally" />
         <:actions>
           <.button phx-disable-with="Saving...">Save Song</.button>

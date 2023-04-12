@@ -3,6 +3,7 @@ defmodule PopContest.Songs.Song do
   import Ecto.Changeset
 
   schema "songs" do
+    field :artist, :string
     field :tally, :integer
     field :title, :string
 
@@ -12,7 +13,7 @@ defmodule PopContest.Songs.Song do
   @doc false
   def changeset(song, attrs) do
     song
-    |> cast(attrs, [:title, :tally])
-    |> validate_required([:title, :tally])
+    |> cast(attrs, [:title, :artist, :tally])
+    |> validate_required([:title, :artist, :tally])
   end
 end

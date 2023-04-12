@@ -24,7 +24,7 @@
     <tbody>
     <%= for song <- @songs do %>
       <tr>
-        <td><%= song.title %></td>
+        <td><%= song.title %> <span class="text-zinc-600 text-lg items-center">- <%= song.artist %></span></td>
         <td class="text-right"><%= song.tally %></td>
       </tr>
     <% end %>
