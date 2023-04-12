@@ -33,7 +33,7 @@ defmodule PopContestWeb.SongLive.Vote do
         -1 -> assign(socket, :auto_refresh, 10)
         _  -> socket
       end
-    {:noreply, ns} 
+    {:noreply, ns}
   end
   def handle_event("refresh", _, socket) do
     {:noreply, update(socket, Songs.sample_songs())}
