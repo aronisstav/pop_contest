@@ -14,6 +14,6 @@ defmodule PopContest.Songs.Song do
   def changeset(song, attrs) do
     song
     |> cast(attrs, [:title, :artist, :tally])
-    |> validate_required([:title, :artist, :tally])
+    |> validate_required([:title, :tally])
   end
 end

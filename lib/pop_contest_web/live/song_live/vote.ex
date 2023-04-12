@@ -15,8 +15,10 @@ defmodule PopContestWeb.SongLive.Vote do
       true ->
         {:ok, _} = Presence.track(self(), @presence_topic, socket.id, %{})
         Phoenix.PubSub.subscribe(PubSub, @presence_topic)
+        :timer.send_interval(1000, :tick)
         {:ok, update(socket, Songs.sample_songs())}
-      false -> {:ok, update(socket, [%Song{:title => "Loading..."}])}
+      false ->
+        {:ok, update(socket, [%Song{:title => "Loading..."}])}
     end
   end
 
@@ -25,14 +27,34 @@ defmodule PopContestWeb.SongLive.Vote do
     %{:tally => tally} = song = Songs.get_song!(id)
     {:ok, _} = Songs.update_song(song, %{:tally => tally + 1})
     PopContestWeb.Endpoint.broadcast_from(self(), @topic, "vote", :foo)
-    {:noreply, socket}
+    %{:assigns => %{:auto_refresh => a}} = socket
+    ns =
+      case a do
+        -1 -> assign(socket, :auto_refresh, 10)
+        _  -> socket
+      end
+    {:noreply, ns} 
   end
   def handle_event("refresh", _, socket) do
     {:noreply, update(socket, Songs.sample_songs())}
   end
 
+  def handle_info(tick, socket) do
+    %{:assigns => %{:auto_refresh => a}} = socket
+    ns =
+      case a do
+        -1 -> socket
+        1  ->
+          update(socket, Songs.sample_songs())
+        _  ->
+          assign(socket, :auto_refresh, a - 1)
+      end
+    {:noreply, ns}
+  end
+
   def update(socket, songs) do
     socket
+    |> assign(:auto_refresh, -1)
     |> assign(:songs, songs)
     |> assign(:presence, get_presence())
     |> assign(:page_title, "Voting")

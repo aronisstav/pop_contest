@@ -31,4 +31,7 @@
       <.button class="border-4 text-red-600 border-red-600 w-full">Draw new songs</.button>
     </.link>
   </div>
+  <div class="flex-center text-center font-bold text-red-500 text-md">
+    <%= if @auto_refresh != -1 do %> Auto refresh in <%= @auto_refresh %> s... <% end %>
+  </div>
 </div>
