@@ -1,14 +1,17 @@
 <div class="grid grid-col items-center gap-5">
-  <div class="grid grid-cols-3 items-center justify-items-center gap-5 w-full">
-    <div class="justify-self-start">
+  <div class="flex flex-nowrap items-center justify-items-center gap-5 w-full">
+    <div class="flex-none justify-self-start">
       <.link href={~p"/vote"} >
         <.button class="border-2 border-amber-300 text-yellow-200">Vote</.button>
       </.link>
     </div>
-    <div class="flex-center text-center font-bold text-yellow-200 text-md">
-      <%= @presence %> visitor<%= if @presence == 1 do "" else "s" end %> online
+    <div class="flex flex-grow flex-wrap justify-center font-bold text-yellow-200 text-md gap-5">
+      <span>bit.ly/GBGasp </span>
+      <span>
+        <%= @presence %> visitor<%= if @presence == 1 do "" else "s" end %> online
+      </span>
     </div>
-    <div class="justify-self-end">
+    <div class="flex-none justify-self-end">
       <.link href={"https://www.instagram.com/glasblasarna"} >
         <.button class="border-2 border-amber-300 text-yellow-200">Instagram</.button>
       </.link>
@@ -24,7 +27,10 @@
     <tbody>
     <%= for song <- @songs do %>
       <tr>
-        <td><%= song.title %> <span class="text-zinc-600 text-lg items-center">- <%= song.artist %></span></td>
+        <td class="flex flex-wrap items-center gap-2">
+            <span><%= song.title %></span>
+            <span class="text-zinc-600 text-lg"> - <%= song.artist %></span>
+        </td>
         <td class="text-right"><%= song.tally %></td>
       </tr>
     <% end %>
